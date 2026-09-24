@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#C8102E">
+<title>Notfallblatt</title>
+<meta name="description" content="Ein Blatt für den Kühlschrank: Medikamente, Allergien, Diagnosen, Kontakte. Für den Rettungsdienst. Wird im Browser ausgefüllt und gedruckt, nichts wird gesendet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --surface-2:#E9EDF1; --line:#C9D2DC;
+  --ink:#121820; --ink-2:#3A4756; --muted:#66768A;
+  --red:#C8102E; --red-soft:#FBE3E7; --gold:#E3B505; --gold-soft:#FBF1C7; --go:#1F7A4D; --go-soft:#DCF2E6;
+  --shadow:0 10px 30px rgba(18,24,32,.10);
+  --body:"Atkinson Hyperlegible","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#0E1319; --surface:#171E27; --surface-2:#1F2933; --line:#33414F;
+    --ink:#EEF2F6; --ink-2:#C3CDD8; --muted:#8C9BAB;
+    --red:#E5333F; --red-soft:#3D1A20; --gold:#F2C530; --gold-soft:#3A3212; --go:#4FCF8A; --go-soft:#173626;
+    --shadow:0 10px 30px rgba(0,0,0,.45)}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0E1319; --surface:#171E27; --surface-2:#1F2933; --line:#33414F;
+  --ink:#EEF2F6; --ink-2:#C3CDD8; --muted:#8C9BAB;
+  --red:#E5333F; --red-soft:#3D1A20; --gold:#F2C530; --gold-soft:#3A3212; --go:#4FCF8A; --go-soft:#173626;
+  --shadow:0 10px 30px rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 var(--body)}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:12px 64px;display:grid;gap:18px}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:30px;font-weight:700}
+h2{font-size:20px;font-weight:700}
+p{margin:0;max-width:64ch}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand small{display:block;font-size:15px;color:var(--muted)}
+.langs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:999px}
+.langs button{border:0;background:transparent;border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:var(--ink-2)}
+.langs button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.intro{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:10px}
+.intro ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:17px}
+.priv{display:flex;gap:10px;align-items:flex-start;background:var(--go-soft);border-radius:12px;padding:12px 14px;font-size:16px}
+.priv .dot{flex:none;width:12px;height:12px;border-radius:50%;background:var(--go);margin-top:7px}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}}
+
+/* form */
+form{display:grid;gap:14px}
+fieldset{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:14px 16px 16px;margin:0;display:grid;gap:12px;min-width:0}
+legend{font-weight:700;font-size:18px;padding:0 6px}
+legend .hint{font-weight:400;color:var(--muted);font-size:15px}
+.row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+label.f{display:grid;gap:4px;font-size:15px;color:var(--ink-2);min-width:0}
+label.f span{font-weight:700}
+input[type=text],input[type=tel],input[type=date],textarea,select{width:100%;font:inherit;font-size:18px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:48px}
+textarea{min-height:76px;resize:vertical}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.chk{display:flex;gap:10px;align-items:center;background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:16px;min-height:48px}
+.chk input{width:22px;height:22px;flex:none;accent-color:var(--red)}
+.chk.hot{background:var(--red-soft)}
+.meds{display:grid;gap:8px}
+.med{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.3fr) 44px;gap:8px;align-items:end}
+@media (max-width:560px){.med{grid-template-columns:1fr 1fr;} .med label:first-child{grid-column:1/-1}}
+.med .x{height:48px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:20px;line-height:1;color:var(--ink-2)}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:700;font-size:17px;min-height:50px;background:var(--surface-2);color:var(--ink)}
+.btn.primary{background:var(--red);color:#fff;box-shadow:var(--shadow)}
+.btn.ghost{background:transparent;border:2px solid var(--line)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.small{font-size:15px;color:var(--muted)}
+.toggle{display:flex;gap:10px;align-items:center;font-size:16px;color:var(--ink-2)}
+.toggle input{width:22px;height:22px;accent-color:var(--go)}
+
+/* preview panel */
+.preview{position:sticky;top:env(safe-area-inset-top,0px);display:grid;gap:10px}
+@media (max-width:980px){.preview{position:static}}
+.sheetwrap{background:var(--surface-2);border-radius:16px;padding:12px;overflow:auto}
+.sheet{--s-ink:#121820;--s-ink2:#3A4756;--s-muted:#66768A;--s-line:#C9D2DC;--s-red:#C8102E;--s-redsoft:#FBE3E7;--s-soft:#F3F5F7;
+  width:210mm;min-height:297mm;background:#fff;color:var(--s-ink);padding:12mm 13mm 11mm;margin:0 auto;display:grid;grid-template-rows:auto auto 1fr auto;gap:5mm;
+  font:11.5pt/1.35 var(--body);transform-origin:top left;box-shadow:0 6px 24px rgba(0,0,0,.18);position:relative}
+.sheet.example::after{content:attr(data-example);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-22deg);font-size:64pt;font-weight:700;color:rgba(200,16,46,.10);pointer-events:none;white-space:nowrap}
+.s-head{display:grid;grid-template-columns:1fr auto;gap:6mm;align-items:end;border-bottom:1.4mm solid var(--s-red);padding-bottom:3mm}
+.s-head .t{font-size:24pt;font-weight:700;letter-spacing:.02em;color:var(--s-red);line-height:1}
+.s-head .st{font-size:10.5pt;color:var(--s-ink2);margin-top:1.5mm}
+.s-head .date{font-size:9.5pt;color:var(--s-muted);text-align:right;line-height:1.35}
+.s-head .date b{display:block;color:var(--s-ink);font-size:11pt}
+.s-person{display:grid;grid-template-columns:1fr 1fr;gap:3mm 8mm;align-items:start}
+.s-name{grid-column:1/-1;font-size:22pt;font-weight:700;line-height:1.1}
+.s-kv{display:grid;gap:.5mm;font-size:11.5pt}
+.s-kv small{font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase;color:var(--s-muted);font-weight:700}
+.s-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm;align-content:start}
+.s-box{display:grid;gap:2mm;align-content:start;min-width:0}
+.s-box.full{grid-column:1/-1}
+.s-box h3{margin:0;font-size:9.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--s-red);border-bottom:.4mm solid var(--s-line);padding-bottom:1.2mm;font-weight:700}
+.s-box p,.s-box li{font-size:12pt;overflow-wrap:anywhere}
+.s-box .empty{color:var(--s-muted);font-style:italic}
+.s-alert{background:var(--s-redsoft);border-left:2mm solid var(--s-red);padding:2.5mm 3.5mm;border-radius:1.5mm;font-size:12.5pt;font-weight:700}
+.s-flags{display:flex;flex-wrap:wrap;gap:2mm}
+.s-flag{border:.5mm solid var(--s-red);color:var(--s-red);border-radius:1.5mm;padding:1mm 2.5mm;font-size:10.5pt;font-weight:700}
+table.s-meds{border-collapse:collapse;width:100%;font-size:11.5pt}
+table.s-meds th{text-align:left;font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase;color:var(--s-muted);padding:1mm 1.5mm;border-bottom:.4mm solid var(--s-line)}
+table.s-meds td{padding:1.6mm 1.5mm;border-bottom:.3mm solid var(--s-line);vertical-align:top;overflow-wrap:anywhere}
+table.s-meds td:first-child{font-weight:700}
+.s-contacts{display:grid;gap:1.5mm}
+.s-contacts div{display:grid;grid-template-columns:1fr auto;gap:3mm;font-size:12pt}
+.s-contacts b{font-weight:700}
+.s-contacts .tel{font-weight:700;white-space:nowrap}
+.s-foot{border-top:.4mm solid var(--s-line);padding-top:2.5mm;font-size:8.5pt;color:var(--s-muted);display:flex;justify-content:space-between;gap:6mm;flex-wrap:wrap}
+
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+footer.site{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:grid;gap:6px}
+footer.site a{color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}
+  .wrap>*:not(.layout),.layout>*:not(.preview),.preview>*:not(.sheetwrap),.toast{display:none!important}
+  .wrap{padding:0;max-width:none;display:block}
+  .layout{display:block}
+  .preview{position:static;display:block}
+  .sheetwrap{padding:0;background:#fff;border-radius:0;overflow:visible}
+  .sheet{box-shadow:none;margin:0;transform:none!important;min-height:auto;height:297mm;color:#121820}
+  .sheet.example::after{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Notfallblatt</h1><small data-i18n="tagline">Ein Blatt für den Kühlschrank, das dem Rettungsdienst die wichtigsten Antworten gibt.</small></div>
+    <div class="langs" role="group" aria-label="Sprache">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <section class="intro">
+    <p data-i18n="intro_p">Wenn der Rettungsdienst kommt, fehlen oft genau die Antworten, die zählen: Welche Medikamente? Welche Allergien? Wer soll angerufen werden? Dieses Blatt beantwortet sie, auch wenn die Person es selbst nicht mehr kann.</p>
+    <ol>
+      <li data-i18n="intro_1">Ausfüllen. Was nicht zutrifft, leer lassen.</li>
+      <li data-i18n="intro_2">Drucken und an den Kühlschrank hängen. Rettungsdienste schauen dort zuerst nach. Eine Kopie ins Portemonnaie.</li>
+      <li data-i18n="intro_3">Bei jeder Änderung der Medikamente neu drucken. Das Datum steht unten rechts.</li>
+    </ol>
+    <div class="priv"><span class="dot"></span><span data-i18n="priv">Alles bleibt auf diesem Gerät. Die Seite sendet nichts an einen Server. Wenn du «Auf diesem Gerät merken» einschaltest, speichert dein Browser den Entwurf lokal, sonst ist er nach dem Schliessen weg.</span></div>
+  </section>
+
+  <div class="layout">
+  <form id="f" autocomplete="off">
+    <fieldset>
+      <legend data-i18n="l_person">Person</legend>
+      <div class="row">
+        <label class="f"><span data-i18n="f_name">Vorname und Name</span><input type="text" id="name" data-k="name"></label>
+        <label class="f"><span data-i18n="f_dob">Geburtsdatum</span><input type="text" id="dob" data-k="dob" inputmode="numeric" placeholder="14.03.1948"></label>
+      </div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_addr">Strasse und Nummer</span><input type="text" id="addr" data-k="addr"></label>
+        <label class="f"><span data-i18n="f_city">PLZ und Ort</span><input type="text" id="city" data-k="city" placeholder="3011 Bern"></label>
+      </div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_floor">Stockwerk, Türcode, Schlüssel</span><input type="text" id="floor" data-k="floor" data-i18n-ph="ph_floor" placeholder="3. Stock links, Schlüssel bei Nachbarin Frau Roth (2. Stock)"></label>
+        <label class="f"><span data-i18n="f_phone">Telefon</span><input type="tel" id="phone" data-k="phone"></label>
+      </div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_lang">Sprache der Person</span><input type="text" id="plang" data-k="plang" data-i18n-ph="ph_lang" placeholder="Deutsch, versteht Französisch"></label>
+        <label class="f"><span data-i18n="f_ins">Krankenkasse, Versichertennummer</span><input type="text" id="ins" data-k="ins"></label>
+      </div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_blood">Blutgruppe</span><input type="text" id="blood" data-k="blood" placeholder="A+"></label>
+        <label class="f"><span data-i18n="f_weight">Gewicht</span><input type="text" id="weight" data-k="weight" placeholder="68 kg"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="l_flags">Für den Rettungsdienst wichtig <span class="hint" data-i18n="l_flags_h">(ankreuzen, was zutrifft)</span></legend>
+      <div class="checks" id="flags"></div>
+      <label class="f"><span data-i18n="f_flags_more">Weitere Besonderheiten</span><input type="text" id="flagsmore" data-k="flagsmore" data-i18n-ph="ph_flagsmore" placeholder="Schwerhörig rechts, Sturz im Mai 2026"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="l_meds">Medikamente</legend>
+      <div class="meds" id="meds"></div>
+      <div class="actions"><button type="button" class="btn ghost" id="addMed" data-i18n="b_addmed">+ Medikament</button></div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="l_health">Gesundheit</legend>
+      <label class="f"><span data-i18n="f_allerg">Allergien und Unverträglichkeiten</span><textarea id="allerg" data-k="allerg" data-i18n-ph="ph_allerg" placeholder="Penicillin (Ausschlag), Jod-Kontrastmittel"></textarea></label>
+      <label class="f"><span data-i18n="f_diag">Diagnosen und Operationen</span><textarea id="diag" data-k="diag" data-i18n-ph="ph_diag" placeholder="Herzinsuffizienz, Bypass-Operation 2026 (Inselspital), Diabetes Typ 2"></textarea></label>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="l_contacts">Wer soll angerufen werden</legend>
+      <div id="contacts"></div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_doc">Hausarzt oder Hausärztin</span><input type="text" id="doc" data-k="doc" data-i18n-ph="ph_doc" placeholder="Dr. med. Anna Berger, Praxis Länggasse"></label>
+        <label class="f"><span data-i18n="f_doctel">Telefon Praxis</span><input type="tel" id="doctel" data-k="doctel"></label>
+      </div>
+      <div class="row">
+        <label class="f"><span data-i18n="f_pharm">Apotheke</span><input type="text" id="pharm" data-k="pharm"></label>
+        <label class="f"><span data-i18n="f_spitex">Spitex oder Pflege</span><input type="text" id="spitex" data-k="spitex"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-i18n="l_docs">Dokumente und Wünsche</legend>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" id="pv" data-k="pv"><span data-i18n="c_pv">Patientenverfügung vorhanden</span></label>
+        <label class="chk"><input type="checkbox" id="va" data-k="va"><span data-i18n="c_va">Vorsorgeauftrag vorhanden</span></label>
+        <label class="chk"><input type="checkbox" id="od" data-k="od"><span data-i18n="c_od">Organspende-Ausweis vorhanden</span></label>
+      </div>
+      <label class="f"><span data-i18n="f_docs_where">Wo liegen die Dokumente</span><input type="text" id="docswhere" data-k="docswhere" data-i18n-ph="ph_docswhere" placeholder="Rote Mappe im Schrank neben der Haustür"></label>
+      <label class="f"><span data-i18n="f_notes">Was der Rettungsdienst noch wissen soll</span><textarea id="notes" data-k="notes" data-i18n-ph="ph_notes" placeholder="Katze Mimi ist in der Wohnung, Nachbarin füttert. Bitte Brille mitnehmen."></textarea></label>
+    </fieldset>
+
+    <div class="actions">
+      <button type="button" class="btn primary" id="printBtn" data-i18n="b_print">Drucken / als PDF sichern</button>
+      <button type="button" class="btn ghost" id="exampleBtn" data-i18n="b_example">Beispiel ansehen</button>
+      <button type="button" class="btn ghost" id="clearBtn" data-i18n="b_clear">Alles löschen</button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="remember"><span data-i18n="t_remember">Auf diesem Gerät merken (nur in diesem Browser)</span></label>
+    <p class="small" data-i18n="print_hint">Im Druckdialog «Kopf- und Fusszeilen» ausschalten und Format A4 wählen. Auf dem Handy: Teilen → Drucken.</p>
+  </form>
+
+  <aside class="preview" aria-label="Vorschau">
+    <div class="eyebrow" data-i18n="prev_eyebrow">Vorschau, so wird es gedruckt</div>
+    <div class="sheetwrap" id="sheetwrap">
+      <article class="sheet example" id="sheet" data-example="">
+        <header class="s-head">
+          <div><div class="t" id="s_title"></div><div class="st" id="s_sub"></div></div>
+          <div class="date" id="s_date"></div>
+        </header>
+        <section class="s-person">
+          <div class="s-name" id="s_name"></div>
+          <div class="s-kv"><small id="k_dob"></small><span id="s_dob"></span></div>
+          <div class="s-kv"><small id="k_phone"></small><span id="s_phone"></span></div>
+          <div class="s-kv"><small id="k_addr"></small><span id="s_addr"></span></div>
+          <div class="s-kv"><small id="k_floor"></small><span id="s_floor"></span></div>
+          <div class="s-kv"><small id="k_lang"></small><span id="s_lang"></span></div>
+          <div class="s-kv"><small id="k_ins"></small><span id="s_ins"></span></div>
+        </section>
+        <section class="s-grid">
+          <div class="s-box full" id="s_flagbox"><h3 id="h_flags"></h3><div class="s-flags" id="s_flags"></div><p id="s_flagsmore"></p></div>
+          <div class="s-box full"><h3 id="h_allerg"></h3><div id="s_allerg"></div></div>
+          <div class="s-box full"><h3 id="h_meds"></h3><div id="s_meds"></div></div>
+          <div class="s-box"><h3 id="h_diag"></h3><p id="s_diag"></p></div>
+          <div class="s-box"><h3 id="h_contacts"></h3><div class="s-contacts" id="s_contacts"></div></div>
+          <div class="s-box"><h3 id="h_care"></h3><div class="s-contacts" id="s_care"></div></div>
+          <div class="s-box"><h3 id="h_docs"></h3><p id="s_docs"></p><p id="s_notes"></p></div>
+        </section>
+        <footer class="s-foot"><span id="s_foot1"></span><span id="s_foot2"></span></footer>
+      </article>
+    </div>
+  </aside>
+  </div>
+
+  <footer class="site">
+    <p data-i18n="site_1">Notfallblatt ist frei (CC0) und für jede Gemeinde nutzbar. Es ersetzt weder den Notruf 144 noch das Gespräch mit der Ärztin oder dem Arzt.</p>
+    <p><a href="https://richardcervenka111-create.github.io/baern-hilft/" target="_blank" rel="noopener" data-i18n="site_2">Bärn hilft: Reanimationstakt, Notrufnummern, nächster Defibrillator</a> · <a href="https://github.com/richardcervenka111-create/notfallblatt" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var I18N = {
+de:{
+  tagline:'Ein Blatt für den Kühlschrank, das dem Rettungsdienst die wichtigsten Antworten gibt.',
+  intro_p:'Wenn der Rettungsdienst kommt, fehlen oft genau die Antworten, die zählen: Welche Medikamente? Welche Allergien? Wer soll angerufen werden? Dieses Blatt beantwortet sie, auch wenn die Person es selbst nicht mehr kann.',
+  intro_1:'Ausfüllen. Was nicht zutrifft, leer lassen.', intro_2:'Drucken und an den Kühlschrank hängen. Rettungsdienste schauen dort zuerst nach. Eine Kopie ins Portemonnaie.', intro_3:'Bei jeder Änderung der Medikamente neu drucken. Das Datum steht oben rechts.',
+  priv:'Alles bleibt auf diesem Gerät. Die Seite sendet nichts an einen Server. Wenn du «Auf diesem Gerät merken» einschaltest, speichert dein Browser den Entwurf lokal, sonst ist er nach dem Schliessen weg.',
+  l_person:'Person', f_name:'Vorname und Name', f_dob:'Geburtsdatum', f_addr:'Strasse und Nummer', f_city:'PLZ und Ort', f_floor:'Stockwerk, Türcode, Schlüssel', f_phone:'Telefon', f_lang:'Sprache der Person', f_ins:'Krankenkasse, Versichertennummer', f_blood:'Blutgruppe', f_weight:'Gewicht',
+  ph_floor:'3. Stock links, Schlüssel bei Nachbarin Frau Roth (2. Stock)', ph_lang:'Deutsch, versteht Französisch',
+  l_flags:'Für den Rettungsdienst wichtig ', l_flags_h:'(ankreuzen, was zutrifft)', f_flags_more:'Weitere Besonderheiten', ph_flagsmore:'Schwerhörig rechts, Sturz im Mai 2026',
+  flags:['Blutverdünner','Herzschrittmacher / ICD','Diabetes (Insulin)','Diabetes (Tabletten)','Epilepsie','Demenz','Dialyse','Sauerstoff zu Hause','Herzklappe / Stent / Bypass','Schluckstörung','Hörgerät','Zahnprothese','Allergie auf Medikamente','Schwanger'],
+  l_meds:'Medikamente', m_name:'Medikament', m_dose:'Dosis', m_when:'Wann', b_addmed:'+ Medikament', when:['morgens','mittags','abends','nachts','bei Bedarf','wöchentlich'],
+  l_health:'Gesundheit', f_allerg:'Allergien und Unverträglichkeiten', ph_allerg:'Penicillin (Ausschlag), Jod-Kontrastmittel', f_diag:'Diagnosen und Operationen', ph_diag:'Herzinsuffizienz, Bypass-Operation 2026 (Inselspital), Diabetes Typ 2',
+  l_contacts:'Wer soll angerufen werden', c_name:'Name', c_rel:'Beziehung', c_tel:'Telefon', ph_rel:'Tochter', f_doc:'Hausarzt oder Hausärztin', ph_doc:'Dr. med. Anna Berger, Praxis Länggasse', f_doctel:'Telefon Praxis', f_pharm:'Apotheke', f_spitex:'Spitex oder Pflege',
+  l_docs:'Dokumente und Wünsche', c_pv:'Patientenverfügung vorhanden', c_va:'Vorsorgeauftrag vorhanden', c_od:'Organspende-Ausweis vorhanden', f_docs_where:'Wo liegen die Dokumente', ph_docswhere:'Rote Mappe im Schrank neben der Haustür', f_notes:'Was der Rettungsdienst noch wissen soll', ph_notes:'Katze Mimi ist in der Wohnung, Nachbarin füttert. Bitte Brille mitnehmen.',
+  b_print:'Drucken / als PDF sichern', b_example:'Beispiel ansehen', b_clear:'Alles löschen', b_clear_sure:'Wirklich alles löschen? Nochmals tippen.', t_remember:'Auf diesem Gerät merken (nur in diesem Browser)',
+  print_hint:'Im Druckdialog «Kopf- und Fusszeilen» ausschalten und Format A4 wählen. Auf dem Handy: Teilen → Drucken.', prev_eyebrow:'Vorschau, so wird es gedruckt',
+  s_title:'NOTFALLBLATT', s_sub:'Bitte dem Rettungsdienst zeigen · Notruf 144', s_date:'Stand', s_example:'BEISPIEL',
+  k_dob:'Geboren', k_phone:'Telefon', k_addr:'Adresse', k_floor:'Zugang', k_lang:'Sprache', k_ins:'Krankenkasse', k_blood:'Blutgruppe', k_weight:'Gewicht',
+  h_flags:'Wichtig', h_allerg:'Allergien', h_meds:'Medikamente', h_diag:'Diagnosen und Operationen', h_contacts:'Bitte anrufen', h_care:'Ärztin / Arzt, Apotheke, Pflege', h_docs:'Dokumente und Hinweise',
+  none:'keine bekannt', empty:'—', pharm:'Apotheke', spitex:'Spitex',
+  doc_pv:'Patientenverfügung', doc_va:'Vorsorgeauftrag', doc_od:'Organspende-Ausweis', doc_where:'Ablage:',
+  s_foot1:'Vom Betroffenen oder Angehörigen ausgefüllt. Bitte mit Medikamentenliste der Ärztin oder des Arztes abgleichen.', s_foot2:'Am Kühlschrank aufhängen · Kopie ins Portemonnaie · notfallblatt (CC0)',
+  site_1:'Notfallblatt ist frei (CC0) und für jede Gemeinde nutzbar. Es ersetzt weder den Notruf 144 noch das Gespräch mit der Ärztin oder dem Arzt.', site_2:'Bärn hilft: Reanimationstakt, Notrufnummern, nächster Defibrillator',
+  toast_cleared:'Gelöscht', toast_saved:'Auf diesem Gerät gespeichert', toast_nosave:'Wird nicht mehr gespeichert'
+},
+fr:{
+  tagline:'Une feuille pour le frigo qui donne aux secours les réponses essentielles.',
+  intro_p:'Quand les secours arrivent, il manque souvent justement les réponses qui comptent : quels médicaments ? quelles allergies ? qui appeler ? Cette feuille y répond, même si la personne ne peut plus le faire elle-même.',
+  intro_1:'Remplir. Laisser vide ce qui ne s’applique pas.', intro_2:'Imprimer et accrocher au frigo. Les secours regardent là en premier. Une copie dans le portemonnaie.', intro_3:'Réimprimer à chaque changement de médicaments. La date figure en haut à droite.',
+  priv:'Tout reste sur cet appareil. La page n’envoie rien à un serveur. Si vous activez « Mémoriser sur cet appareil », le navigateur garde le brouillon localement ; sinon il disparaît à la fermeture.',
+  l_person:'Personne', f_name:'Prénom et nom', f_dob:'Date de naissance', f_addr:'Rue et numéro', f_city:'NPA et localité', f_floor:'Étage, code de porte, clé', f_phone:'Téléphone', f_lang:'Langue de la personne', f_ins:'Caisse-maladie, numéro d’assuré', f_blood:'Groupe sanguin', f_weight:'Poids',
+  ph_floor:'3e étage à gauche, clé chez la voisine Mme Roth (2e)', ph_lang:'Français, comprend l’allemand',
+  l_flags:'Important pour les secours ', l_flags_h:'(cocher ce qui s’applique)', f_flags_more:'Autres particularités', ph_flagsmore:'Malentendant à droite, chute en mai 2026',
+  flags:['Anticoagulant','Pacemaker / DAI','Diabète (insuline)','Diabète (comprimés)','Épilepsie','Démence','Dialyse','Oxygène à domicile','Valve / stent / bypass','Troubles de la déglutition','Appareil auditif','Prothèse dentaire','Allergie médicamenteuse','Enceinte'],
+  l_meds:'Médicaments', m_name:'Médicament', m_dose:'Dose', m_when:'Quand', b_addmed:'+ Médicament', when:['matin','midi','soir','nuit','au besoin','hebdomadaire'],
+  l_health:'Santé', f_allerg:'Allergies et intolérances', ph_allerg:'Pénicilline (éruption), produit de contraste iodé', f_diag:'Diagnostics et opérations', ph_diag:'Insuffisance cardiaque, bypass 2026 (Inselspital), diabète de type 2',
+  l_contacts:'Qui appeler', c_name:'Nom', c_rel:'Lien', c_tel:'Téléphone', ph_rel:'Fille', f_doc:'Médecin de famille', ph_doc:'Dr Anna Berger, cabinet Länggasse', f_doctel:'Téléphone du cabinet', f_pharm:'Pharmacie', f_spitex:'Spitex ou soins',
+  l_docs:'Documents et souhaits', c_pv:'Directives anticipées existantes', c_va:'Mandat pour cause d’inaptitude existant', c_od:'Carte de donneur d’organes existante', f_docs_where:'Où se trouvent les documents', ph_docswhere:'Classeur rouge dans l’armoire près de la porte', f_notes:'Ce que les secours doivent encore savoir', ph_notes:'La chatte Mimi est dans l’appartement, la voisine la nourrit. Prendre les lunettes.',
+  b_print:'Imprimer / enregistrer en PDF', b_example:'Voir un exemple', b_clear:'Tout effacer', b_clear_sure:'Vraiment tout effacer ? Touchez encore une fois.', t_remember:'Mémoriser sur cet appareil (uniquement dans ce navigateur)',
+  print_hint:'Dans la boîte d’impression, désactiver « en-têtes et pieds de page » et choisir A4. Sur le téléphone : Partager → Imprimer.', prev_eyebrow:'Aperçu, tel qu’il sera imprimé',
+  s_title:'FEUILLE D’URGENCE', s_sub:'À montrer aux secours · Urgence 144', s_date:'État au', s_example:'EXEMPLE',
+  k_dob:'Né(e) le', k_phone:'Téléphone', k_addr:'Adresse', k_floor:'Accès', k_lang:'Langue', k_ins:'Caisse-maladie', k_blood:'Groupe sanguin', k_weight:'Poids',
+  h_flags:'Important', h_allerg:'Allergies', h_meds:'Médicaments', h_diag:'Diagnostics et opérations', h_contacts:'Appeler', h_care:'Médecin, pharmacie, soins', h_docs:'Documents et remarques',
+  none:'aucune connue', empty:'—', pharm:'Pharmacie', spitex:'Spitex',
+  doc_pv:'Directives anticipées', doc_va:'Mandat pour cause d’inaptitude', doc_od:'Carte de donneur', doc_where:'Rangement :',
+  s_foot1:'Rempli par la personne ou ses proches. À comparer avec la liste de médicaments du médecin.', s_foot2:'Accrocher au frigo · copie dans le portemonnaie · notfallblatt (CC0)',
+  site_1:'Notfallblatt est libre (CC0) et utilisable par toute commune. Il ne remplace ni l’appel au 144 ni l’entretien avec le médecin.', site_2:'Bärn hilft : rythme de réanimation, numéros d’urgence, défibrillateur le plus proche',
+  toast_cleared:'Effacé', toast_saved:'Enregistré sur cet appareil', toast_nosave:'N’est plus enregistré'
+},
+it:{
+  tagline:'Un foglio per il frigorifero che dà ai soccorritori le risposte più importanti.',
+  intro_p:'Quando arrivano i soccorsi mancano spesso proprio le risposte che contano: quali medicamenti? quali allergie? chi chiamare? Questo foglio risponde, anche se la persona non può più farlo da sola.',
+  intro_1:'Compilare. Lasciare vuoto ciò che non si applica.', intro_2:'Stampare e appendere al frigorifero. I soccorritori guardano lì per primi. Una copia nel portafoglio.', intro_3:'Ristampare a ogni cambio di medicamenti. La data è in alto a destra.',
+  priv:'Tutto resta su questo dispositivo. La pagina non invia nulla a un server. Se attivi «Ricorda su questo dispositivo», il browser salva la bozza localmente; altrimenti sparisce alla chiusura.',
+  l_person:'Persona', f_name:'Nome e cognome', f_dob:'Data di nascita', f_addr:'Via e numero', f_city:'NPA e località', f_floor:'Piano, codice porta, chiave', f_phone:'Telefono', f_lang:'Lingua della persona', f_ins:'Cassa malati, numero di assicurato', f_blood:'Gruppo sanguigno', f_weight:'Peso',
+  ph_floor:'3º piano a sinistra, chiave dalla vicina sig.ra Roth (2º)', ph_lang:'Italiano, capisce il tedesco',
+  l_flags:'Importante per i soccorritori ', l_flags_h:'(spuntare ciò che si applica)', f_flags_more:'Altre particolarità', ph_flagsmore:'Ipoacusia a destra, caduta nel maggio 2026',
+  flags:['Anticoagulante','Pacemaker / ICD','Diabete (insulina)','Diabete (compresse)','Epilessia','Demenza','Dialisi','Ossigeno a domicilio','Valvola / stent / bypass','Disfagia','Apparecchio acustico','Protesi dentaria','Allergia a medicamenti','Gravidanza'],
+  l_meds:'Medicamenti', m_name:'Medicamento', m_dose:'Dose', m_when:'Quando', b_addmed:'+ Medicamento', when:['mattina','mezzogiorno','sera','notte','al bisogno','settimanale'],
+  l_health:'Salute', f_allerg:'Allergie e intolleranze', ph_allerg:'Penicillina (eruzione), mezzo di contrasto iodato', f_diag:'Diagnosi e operazioni', ph_diag:'Insufficienza cardiaca, bypass 2026 (Inselspital), diabete tipo 2',
+  l_contacts:'Chi chiamare', c_name:'Nome', c_rel:'Relazione', c_tel:'Telefono', ph_rel:'Figlia', f_doc:'Medico di famiglia', ph_doc:'Dr. med. Anna Berger, studio Länggasse', f_doctel:'Telefono studio', f_pharm:'Farmacia', f_spitex:'Spitex o cure',
+  l_docs:'Documenti e volontà', c_pv:'Direttive del paziente presenti', c_va:'Mandato precauzionale presente', c_od:'Tessera di donatore presente', f_docs_where:'Dove sono i documenti', ph_docswhere:'Cartella rossa nell’armadio vicino alla porta', f_notes:'Cosa devono ancora sapere i soccorritori', ph_notes:'La gatta Mimi è in casa, la vicina la nutre. Portare gli occhiali.',
+  b_print:'Stampa / salva come PDF', b_example:'Vedi un esempio', b_clear:'Cancella tutto', b_clear_sure:'Cancellare davvero tutto? Tocca di nuovo.', t_remember:'Ricorda su questo dispositivo (solo in questo browser)',
+  print_hint:'Nella finestra di stampa disattivare «intestazioni e piè di pagina» e scegliere A4. Sul telefono: Condividi → Stampa.', prev_eyebrow:'Anteprima, così verrà stampato',
+  s_title:'FOGLIO D’EMERGENZA', s_sub:'Da mostrare ai soccorritori · Emergenza 144', s_date:'Stato al', s_example:'ESEMPIO',
+  k_dob:'Nato/a il', k_phone:'Telefono', k_addr:'Indirizzo', k_floor:'Accesso', k_lang:'Lingua', k_ins:'Cassa malati', k_blood:'Gruppo sanguigno', k_weight:'Peso',
+  h_flags:'Importante', h_allerg:'Allergie', h_meds:'Medicamenti', h_diag:'Diagnosi e operazioni', h_contacts:'Chiamare', h_care:'Medico, farmacia, cure', h_docs:'Documenti e note',
+  none:'nessuna nota', empty:'—', pharm:'Farmacia', spitex:'Spitex',
+  doc_pv:'Direttive del paziente', doc_va:'Mandato precauzionale', doc_od:'Tessera di donatore', doc_where:'Dove:',
+  s_foot1:'Compilato dalla persona o dai familiari. Confrontare con l’elenco dei medicamenti del medico.', s_foot2:'Appendere al frigorifero · copia nel portafoglio · notfallblatt (CC0)',
+  site_1:'Notfallblatt è libero (CC0) e utilizzabile da ogni comune. Non sostituisce né la chiamata al 144 né il colloquio con il medico.', site_2:'Bärn hilft: ritmo di rianimazione, numeri d’emergenza, defibrillatore più vicino',
+  toast_cleared:'Cancellato', toast_saved:'Salvato su questo dispositivo', toast_nosave:'Non viene più salvato'
+},
+en:{
+  tagline:'A sheet for the fridge that gives paramedics the answers that matter.',
+  intro_p:'When the ambulance arrives, the answers that count are often missing: which medication? which allergies? who to call? This sheet answers them, even when the person no longer can.',
+  intro_1:'Fill in. Leave blank what does not apply.', intro_2:'Print and put it on the fridge. Paramedics look there first. Keep a copy in your wallet.', intro_3:'Reprint whenever medication changes. The date is top right.',
+  priv:'Everything stays on this device. The page sends nothing to a server. If you switch on “Remember on this device”, your browser keeps the draft locally; otherwise it is gone when you close the page.',
+  l_person:'Person', f_name:'First and last name', f_dob:'Date of birth', f_addr:'Street and number', f_city:'Postcode and town', f_floor:'Floor, door code, key', f_phone:'Phone', f_lang:'Language of the person', f_ins:'Health insurer, insured number', f_blood:'Blood group', f_weight:'Weight',
+  ph_floor:'3rd floor left, key with neighbour Mrs Roth (2nd floor)', ph_lang:'English, understands German',
+  l_flags:'Important for paramedics ', l_flags_h:'(tick what applies)', f_flags_more:'Other particulars', ph_flagsmore:'Hard of hearing right side, fall in May 2026',
+  flags:['Blood thinner','Pacemaker / ICD','Diabetes (insulin)','Diabetes (tablets)','Epilepsy','Dementia','Dialysis','Home oxygen','Heart valve / stent / bypass','Swallowing difficulty','Hearing aid','Dentures','Drug allergy','Pregnant'],
+  l_meds:'Medication', m_name:'Medication', m_dose:'Dose', m_when:'When', b_addmed:'+ Medication', when:['morning','noon','evening','night','as needed','weekly'],
+  l_health:'Health', f_allerg:'Allergies and intolerances', ph_allerg:'Penicillin (rash), iodine contrast agent', f_diag:'Diagnoses and operations', ph_diag:'Heart failure, bypass surgery 2026 (Inselspital), type 2 diabetes',
+  l_contacts:'Who to call', c_name:'Name', c_rel:'Relationship', c_tel:'Phone', ph_rel:'Daughter', f_doc:'Family doctor', ph_doc:'Dr Anna Berger, Länggasse practice', f_doctel:'Practice phone', f_pharm:'Pharmacy', f_spitex:'Home care (Spitex)',
+  l_docs:'Documents and wishes', c_pv:'Advance directive exists', c_va:'Power of attorney exists', c_od:'Organ donor card exists', f_docs_where:'Where the documents are', ph_docswhere:'Red folder in the cupboard by the front door', f_notes:'What else paramedics should know', ph_notes:'Cat Mimi is in the flat, the neighbour feeds her. Please bring glasses.',
+  b_print:'Print / save as PDF', b_example:'See an example', b_clear:'Clear everything', b_clear_sure:'Really clear everything? Tap again.', t_remember:'Remember on this device (this browser only)',
+  print_hint:'In the print dialog switch off “headers and footers” and choose A4. On a phone: Share → Print.', prev_eyebrow:'Preview, exactly as printed',
+  s_title:'EMERGENCY SHEET', s_sub:'Please show to paramedics · Emergency 144', s_date:'As of', s_example:'EXAMPLE',
+  k_dob:'Born', k_phone:'Phone', k_addr:'Address', k_floor:'Access', k_lang:'Language', k_ins:'Insurer', k_blood:'Blood group', k_weight:'Weight',
+  h_flags:'Important', h_allerg:'Allergies', h_meds:'Medication', h_diag:'Diagnoses and operations', h_contacts:'Please call', h_care:'Doctor, pharmacy, care', h_docs:'Documents and notes',
+  none:'none known', empty:'—', pharm:'Pharmacy', spitex:'Home care',
+  doc_pv:'Advance directive', doc_va:'Power of attorney', doc_od:'Organ donor card', doc_where:'Kept:',
+  s_foot1:'Filled in by the person or relatives. Please check against the doctor’s medication list.', s_foot2:'Put on the fridge · copy in the wallet · notfallblatt (CC0)',
+  site_1:'Notfallblatt is free (CC0) and usable by any municipality. It replaces neither the 144 emergency call nor talking to your doctor.', site_2:'Bärn hilft: CPR beat, emergency numbers, nearest defibrillator',
+  toast_cleared:'Cleared', toast_saved:'Saved on this device', toast_nosave:'No longer saved'
+}
+};
+
+var EXAMPLE = {name:'Rosa Muster', dob:'14.03.1948', addr:'Länggassstrasse 42', city:'3012 Bern', floor:'3. Stock links · Schlüssel bei Nachbarin Frau Roth (2. Stock)', phone:'031 301 12 34', plang:'Deutsch, versteht Französisch', ins:'CSS · 756.1234.5678.90', blood:'A+', weight:'68 kg',
+  flags:[0,8,3,10], flagsmore:'Schwerhörig rechts, ohne Hörgerät laut sprechen',
+  meds:[['Xarelto','20 mg','0'],['Metformin','500 mg','0,2'],['Bisoprolol','5 mg','0'],['Dafalgan','1 g','4']],
+  allerg:'Penicillin (Ausschlag), Jod-Kontrastmittel', diag:'Herzinsuffizienz · Bypass-Operation Mai 2026, Inselspital · Diabetes Typ 2 · Hüft-TP rechts 2019',
+  contacts:[['Lea Muster','Tochter','079 555 11 22'],['Hans Roth','Nachbar, hat Schlüssel','031 301 44 55']],
+  doc:'Dr. med. Anna Berger, Praxis Länggasse', doctel:'031 302 00 11', pharm:'Apotheke Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, Mo/Mi/Fr morgens', pv:true, va:true, od:false, docswhere:'Rote Mappe im Schrank neben der Haustür', notes:'Katze Mimi ist in der Wohnung, Nachbarin füttert. Bitte Brille und Hörgerät mitnehmen.'};
+
+var $ = function(id){ return document.getElementById(id); };
+var lang = 'de';
+try { var savedLang = localStorage.getItem('nb_lang'); if (savedLang && I18N[savedLang]) lang = savedLang; } catch (e) {}
+if (!savedLang) { var nav = (navigator.language||'de').slice(0,2).toLowerCase(); if (I18N[nav]) lang = nav; }
+function t(k){ return I18N[lang][k]; }
+function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+
+var remember = false;
+try { remember = localStorage.getItem('nb_remember') === '1'; } catch (e) {}
+var state = {flags:[], meds:[['','','0'],['','','0'],['','','0']], contacts:[['','',''],['','','']], pv:false, va:false, od:false};
+var TEXT_KEYS = ['name','dob','addr','city','floor','phone','plang','ins','blood','weight','flagsmore','allerg','diag','doc','doctel','pharm','spitex','docswhere','notes'];
+TEXT_KEYS.forEach(function(k){ state[k] = ''; });
+var showExample = false;
+
+function load(){
+  if (!remember) return;
+  try { var raw = localStorage.getItem('nb_state'); if (raw) { var s = JSON.parse(raw); Object.keys(state).forEach(function(k){ if (s[k] !== undefined) state[k] = s[k]; }); } } catch (e) {}
+}
+function save(){
+  if (!remember) return;
+  try { localStorage.setItem('nb_state', JSON.stringify(state)); } catch (e) {}
+}
+function isEmpty(){
+  return TEXT_KEYS.every(function(k){ return !state[k]; }) && !state.flags.length && state.meds.every(function(m){ return !m[0] && !m[1]; }) && state.contacts.every(function(c){ return !c[0] && !c[2]; }) && !state.pv && !state.va && !state.od;
+}
+
+/* ---- form building ---- */
+function buildFlags(){
+  var box = $('flags'); box.textContent = '';
+  t('flags').forEach(function(label, i){
+    var l = el('label','chk' + (i===0||i===12 ? ' hot' : ''));
+    var c = document.createElement('input'); c.type='checkbox'; c.checked = state.flags.indexOf(i) >= 0; c.setAttribute('data-flag', String(i));
+    c.addEventListener('change', function(){ var idx = state.flags.indexOf(i); if (c.checked && idx<0) state.flags.push(i); if (!c.checked && idx>=0) state.flags.splice(idx,1); changed(); });
+    l.appendChild(c); l.appendChild(el('span', null, label)); box.appendChild(l);
+  });
+}
+function buildMeds(){
+  var box = $('meds'); box.textContent = '';
+  state.meds.forEach(function(m, i){
+    var row = el('div','med');
+    var l1 = el('label','f'); l1.appendChild(el('span', null, t('m_name'))); var i1 = document.createElement('input'); i1.type='text'; i1.value=m[0]; i1.id='med_n_'+i; i1.addEventListener('input', function(){ m[0]=i1.value; changed(); }); l1.appendChild(i1);
+    var l2 = el('label','f'); l2.appendChild(el('span', null, t('m_dose'))); var i2 = document.createElement('input'); i2.type='text'; i2.value=m[1]; i2.id='med_d_'+i; i2.addEventListener('input', function(){ m[1]=i2.value; changed(); }); l2.appendChild(i2);
+    var l3 = el('label','f'); l3.appendChild(el('span', null, t('m_when'))); var sel = document.createElement('select'); sel.id='med_w_'+i; sel.multiple = false;
+    t('when').forEach(function(w, wi){ var o = document.createElement('option'); o.value=String(wi); o.textContent=w; sel.appendChild(o); });
+    var extra = document.createElement('option'); extra.value='0,2'; extra.textContent = t('when')[0] + ' + ' + t('when')[2]; sel.appendChild(extra);
+    var extra2 = document.createElement('option'); extra2.value='0,1,2'; extra2.textContent = t('when')[0] + ', ' + t('when')[1] + ', ' + t('when')[2]; sel.appendChild(extra2);
+    sel.value = m[2]; if (sel.value !== m[2]) { sel.value = '0'; m[2] = '0'; }
+    sel.addEventListener('change', function(){ m[2]=sel.value; changed(); }); l3.appendChild(sel);
+    var x = el('button','x','×'); x.type='button'; x.setAttribute('aria-label','entfernen'); x.addEventListener('click', function(){ state.meds.splice(i,1); if(!state.meds.length) state.meds.push(['','','0']); buildMeds(); changed(); });
+    row.appendChild(l1); row.appendChild(l2); row.appendChild(l3); row.appendChild(x); box.appendChild(row);
+  });
+}
+function buildContacts(){
+  var box = $('contacts'); box.textContent = '';
+  state.contacts.forEach(function(c, i){
+    var row = el('div','contact');
+    [['c_name',0,'text',''],['c_rel',1,'text',t('ph_rel')],['c_tel',2,'tel','']].forEach(function(def){
+      var l = el('label','f'); l.appendChild(el('span', null, t(def[0]))); var inp = document.createElement('input'); inp.type=def[2]; inp.value=c[def[1]]; inp.placeholder=def[3]; inp.id='ct_'+def[1]+'_'+i;
+      inp.addEventListener('input', function(){ c[def[1]] = inp.value; changed(); }); l.appendChild(inp); row.appendChild(l);
+    });
+    box.appendChild(row);
+  });
+}
+function bindText(){
+  TEXT_KEYS.forEach(function(k){ var inp = $(k); if(!inp) return; inp.value = state[k]; inp.addEventListener('input', function(){ state[k] = inp.value; changed(); }); });
+  ['pv','va','od'].forEach(function(k){ var c = $(k); c.checked = !!state[k]; c.addEventListener('change', function(){ state[k] = c.checked; changed(); }); });
+}
+function syncFormFromState(){
+  TEXT_KEYS.forEach(function(k){ var inp = $(k); if (inp) inp.value = state[k]; });
+  ['pv','va','od'].forEach(function(k){ $(k).checked = !!state[k]; });
+  buildFlags(); buildMeds(); buildContacts();
+}
+function changed(){ showExample = false; save(); renderSheet(); }
+
+/* ---- sheet ---- */
+function whenLabel(code){
+  return String(code).split(',').map(function(x){ return t('when')[parseInt(x,10)] || ''; }).filter(Boolean).join(' + ');
+}
+function fmtDate(d){ return ('0'+d.getDate()).slice(-2) + '.' + ('0'+(d.getMonth()+1)).slice(-2) + '.' + d.getFullYear(); }
+function renderSheet(){
+  var s = state, ex = false;
+  if (isEmpty() || showExample) { s = EXAMPLE; ex = true; }
+  var sheet = $('sheet'); sheet.classList.toggle('example', ex); sheet.setAttribute('data-example', t('s_example'));
+  $('s_title').textContent = t('s_title'); $('s_sub').textContent = t('s_sub');
+  var d = $('s_date'); d.textContent=''; d.appendChild(document.createTextNode(t('s_date'))); d.appendChild(el('b', null, fmtDate(new Date())));
+  $('s_name').textContent = s.name || t('empty');
+  var kv = function(k, key, val){ $('k_'+k).textContent = t(key); $('s_'+k).textContent = val || t('empty'); };
+  kv('dob','k_dob', s.dob + (s.blood ? ' · ' + t('k_blood') + ' ' + s.blood : '') + (s.weight ? ' · ' + s.weight : ''));
+  kv('phone','k_phone', s.phone); kv('addr','k_addr', [s.addr, s.city].filter(Boolean).join(', ')); kv('floor','k_floor', s.floor); kv('lang','k_lang', s.plang); kv('ins','k_ins', s.ins);
+
+  $('h_flags').textContent = t('h_flags'); var fl = $('s_flags'); fl.textContent='';
+  (s.flags||[]).forEach(function(i){ fl.appendChild(el('span','s-flag', t('flags')[i])); });
+  $('s_flagsmore').textContent = s.flagsmore || ''; $('s_flagbox').hidden = !((s.flags||[]).length || s.flagsmore);
+
+  $('h_allerg').textContent = t('h_allerg'); var al = $('s_allerg'); al.textContent='';
+  if (s.allerg) { al.appendChild(el('div','s-alert', s.allerg)); } else { al.appendChild(el('p','empty', t('none'))); }
+
+  $('h_meds').textContent = t('h_meds'); var md = $('s_meds'); md.textContent='';
+  var meds = (s.meds||[]).filter(function(m){ return m[0]; });
+  if (!meds.length) md.appendChild(el('p','empty', t('none')));
+  else {
+    var tb = el('table','s-meds'); var thead = el('thead'); var tr = el('tr');
+    [t('m_name'), t('m_dose'), t('m_when')].forEach(function(h){ tr.appendChild(el('th', null, h)); }); thead.appendChild(tr); tb.appendChild(thead);
+    var tbody = el('tbody'); meds.forEach(function(m){ var r = el('tr'); r.appendChild(el('td',null,m[0])); r.appendChild(el('td',null,m[1]||'')); r.appendChild(el('td',null,whenLabel(m[2]))); tbody.appendChild(r); }); tb.appendChild(tbody); md.appendChild(tb);
+  }
+  $('h_diag').textContent = t('h_diag'); $('s_diag').textContent = s.diag || t('empty'); $('s_diag').className = s.diag ? '' : 'empty';
+
+  $('h_contacts').textContent = t('h_contacts'); var ct = $('s_contacts'); ct.textContent='';
+  var cs = (s.contacts||[]).filter(function(c){ return c[0] || c[2]; });
+  if (!cs.length) ct.appendChild(el('p','empty', t('empty')));
+  cs.forEach(function(c){ var r = el('div'); var left = el('span'); left.appendChild(el('b', null, c[0])); if (c[1]) left.appendChild(document.createTextNode(' · ' + c[1])); r.appendChild(left); r.appendChild(el('span','tel', c[2]||'')); ct.appendChild(r); });
+
+  $('h_care').textContent = t('h_care'); var ca = $('s_care'); ca.textContent='';
+  if (s.doc || s.doctel) { var r1 = el('div'); var l1 = el('span'); l1.appendChild(el('b', null, s.doc || t('f_doc'))); r1.appendChild(l1); r1.appendChild(el('span','tel', s.doctel||'')); ca.appendChild(r1); }
+  if (s.pharm) { var r2 = el('div'); r2.appendChild(el('span', null, t('pharm') + ': ' + s.pharm)); ca.appendChild(r2); }
+  if (s.spitex) { var r3 = el('div'); r3.appendChild(el('span', null, t('spitex') + ': ' + s.spitex)); ca.appendChild(r3); }
+  if (!ca.children.length) ca.appendChild(el('p','empty', t('empty')));
+
+  $('h_docs').textContent = t('h_docs');
+  var docs = []; if (s.pv) docs.push(t('doc_pv')); if (s.va) docs.push(t('doc_va')); if (s.od) docs.push(t('doc_od'));
+  var dtxt = docs.join(' · ') + (s.docswhere ? (docs.length ? ' — ' : '') + t('doc_where') + ' ' + s.docswhere : '');
+  $('s_docs').textContent = dtxt; $('s_docs').hidden = !dtxt;
+  $('s_notes').textContent = s.notes || ''; $('s_notes').hidden = !s.notes;
+  if (!dtxt && !s.notes) { $('s_docs').hidden = false; $('s_docs').textContent = t('empty'); }
+  $('s_foot1').textContent = t('s_foot1'); $('s_foot2').textContent = t('s_foot2');
+}
+
+/* ---- preview scaling ---- */
+function scaleSheet(){
+  var wrap = $('sheetwrap'), sheet = $('sheet');
+  var avail = wrap.clientWidth - 24, full = sheet.offsetWidth;
+  var k = Math.min(1, avail / full);
+  sheet.style.transform = 'scale(' + k + ')';
+  wrap.style.height = (sheet.offsetHeight * k + 24) + 'px';
+}
+window.addEventListener('resize', scaleSheet);
+
+/* ---- i18n ---- */
+function renderUI(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(n){ var v = t(n.getAttribute('data-i18n')); if (typeof v === 'string') n.textContent = v; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(n){ var v = t(n.getAttribute('data-i18n-ph')); if (typeof v === 'string') n.placeholder = v; });
+  document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+  buildFlags(); buildMeds(); buildContacts(); renderSheet(); scaleSheet();
+}
+document.querySelectorAll('.langs button').forEach(function(b){ b.addEventListener('click', function(){ lang = b.getAttribute('data-lang'); try { localStorage.setItem('nb_lang', lang); } catch (e) {} renderUI(); }); });
+
+/* ---- actions ---- */
+var toastTimer; function toast(m){ var tt=$('toast'); tt.textContent=m; tt.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(function(){ tt.classList.remove('show'); },1800); }
+$('addMed').addEventListener('click', function(){ state.meds.push(['','','0']); buildMeds(); var last = $('med_n_'+(state.meds.length-1)); if (last) last.focus(); });
+$('printBtn').addEventListener('click', function(){ window.print(); });
+$('exampleBtn').addEventListener('click', function(){ showExample = !showExample; renderSheet(); });
+var clearArmed = false, clearTimer;
+$('clearBtn').addEventListener('click', function(){
+  if (!clearArmed) { clearArmed = true; $('clearBtn').textContent = t('b_clear_sure'); clearTimer = setTimeout(function(){ clearArmed=false; $('clearBtn').textContent=t('b_clear'); }, 4000); return; }
+  clearTimeout(clearTimer); clearArmed = false; $('clearBtn').textContent = t('b_clear');
+  Object.keys(state).forEach(function(k){ if (typeof state[k] === 'string') state[k]=''; });
+  state.flags=[]; state.meds=[['','','0'],['','','0'],['','','0']]; state.contacts=[['','',''],['','','']]; state.pv=state.va=state.od=false; showExample=false;
+  try { localStorage.removeItem('nb_state'); } catch (e) {}
+  syncFormFromState(); renderSheet(); toast(t('toast_cleared'));
+});
+$('remember').checked = remember;
+$('remember').addEventListener('change', function(){
+  remember = $('remember').checked;
+  try { localStorage.setItem('nb_remember', remember ? '1' : '0'); if (!remember) localStorage.removeItem('nb_state'); } catch (e) {}
+  if (remember) { save(); toast(t('toast_saved')); } else toast(t('toast_nosave'));
+});
+
+load(); bindText(); renderUI();
+})();
+</script>
+</body>
+</html>

@@ -23,6 +23,12 @@ Angehörigen, Spitex-Teams, Hausarztpraxen und Apotheken, die das Blatt mit ihne
   Entwurf im lokalen Speicher des Browsers; «Alles löschen» entfernt ihn (zweifach tippen).
 - Ohne Eingaben zeigt die Vorschau ein Beispiel («Rosa Muster») mit Wasserzeichen BEISPIEL.
 
+## Drucksachen (`print/`)
+
+- `flyer-A4-de-fr.pdf`: A4, Deutsch vorne, Französisch hinten, für Apotheken, Spitex, Praxen, Angehörige.
+- `qr-notfallblatt.svg` / `.png`: QR-Code auf die Live-Adresse (Fehlerkorrektur H).
+- `flyer.html`: Quelle des Flyers.
+
 ## Datenschutz, technisch
 
 Eine einzige Datei ohne Skripte von Dritten. Die Seite enthält keinen `fetch`, kein

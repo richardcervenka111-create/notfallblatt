@@ -415,6 +415,8 @@ var top=document.querySelector('.k-top.sticky'); if(top){ var on=false; window.a
 'use strict';
 var I18N = {
 de:{
+  description:'Ein Blatt für den Kühlschrank: Medikamente, Allergien, Diagnosen, Kontakte. Für den Rettungsdienst. Wird im Browser ausgefüllt und gedruckt, nichts wird gesendet.',
+  a_lang:'Sprache', a_preview:'Vorschau', a_remove:'entfernen',
   tagline:'Ein Blatt für den Kühlschrank, das dem Rettungsdienst die wichtigsten Antworten gibt.',
   intro_p:'Wenn der Rettungsdienst kommt, fehlen oft genau die Antworten, die zählen: Welche Medikamente? Welche Allergien? Wer soll angerufen werden? Dieses Blatt beantwortet sie, auch wenn die Person es selbst nicht mehr kann.',
   intro_1:'Ausfüllen. Was nicht zutrifft, leer lassen.', intro_2:'Drucken und an den Kühlschrank hängen. Rettungsdienste schauen dort zuerst nach. Eine Kopie ins Portemonnaie.', intro_3:'Bei jeder Änderung der Medikamente neu drucken. Das Datum steht oben rechts.',
@@ -434,11 +436,13 @@ de:{
   h_flags:'Wichtig', h_allerg:'Allergien', h_meds:'Medikamente', h_diag:'Diagnosen und Operationen', h_contacts:'Bitte anrufen', h_care:'Ärztin / Arzt, Apotheke, Pflege', h_docs:'Dokumente und Hinweise',
   none:'keine bekannt', empty:'—', pharm:'Apotheke', spitex:'Spitex',
   doc_pv:'Patientenverfügung', doc_va:'Vorsorgeauftrag', doc_od:'Organspende-Ausweis', doc_where:'Ablage:',
-  s_foot1:'Vom Betroffenen oder Angehörigen ausgefüllt. Bitte mit Medikamentenliste der Ärztin oder des Arztes abgleichen.', s_foot2:'Am Kühlschrank aufhängen · Kopie ins Portemonnaie · notfallblatt (CC0)',
+  s_foot1:'Von der betroffenen Person oder von Angehörigen ausgefüllt. Bitte mit Medikamentenliste der Ärztin oder des Arztes abgleichen.', s_foot2:'Am Kühlschrank aufhängen · Kopie ins Portemonnaie · notfallblatt (CC0)',
   site_1:'Notfallblatt ist frei (CC0) und für jede Gemeinde nutzbar. Es ersetzt weder den Notruf 144 noch das Gespräch mit der Ärztin oder dem Arzt.', site_2:'Bärn hilft: Reanimationstakt, Notrufnummern, nächster Defibrillator',
   toast_cleared:'Gelöscht', toast_saved:'Auf diesem Gerät gespeichert', toast_nosave:'Wird nicht mehr gespeichert'
 },
 fr:{
+  description:'Une feuille pour le frigo : médicaments, allergies, diagnostics, contacts. Pour les secours. Remplie et imprimée dans le navigateur, rien n’est envoyé.',
+  a_lang:'Langue', a_preview:'Aperçu', a_remove:'Supprimer',
   tagline:'Une feuille pour le frigo qui donne aux secours les réponses essentielles.',
   intro_p:'Quand les secours arrivent, il manque souvent justement les réponses qui comptent : quels médicaments ? quelles allergies ? qui appeler ? Cette feuille y répond, même si la personne ne peut plus le faire elle-même.',
   intro_1:'Remplir. Laisser vide ce qui ne s’applique pas.', intro_2:'Imprimer et accrocher au frigo. Les secours regardent là en premier. Une copie dans le portemonnaie.', intro_3:'Réimprimer à chaque changement de médicaments. La date figure en haut à droite.',
@@ -463,6 +467,8 @@ fr:{
   toast_cleared:'Effacé', toast_saved:'Enregistré sur cet appareil', toast_nosave:'N’est plus enregistré'
 },
 it:{
+  description:'Un foglio per il frigorifero: medicamenti, allergie, diagnosi, contatti. Per i soccorritori. Compilato e stampato nel browser, nulla viene inviato.',
+  a_lang:'Lingua', a_preview:'Anteprima', a_remove:'Rimuovi',
   tagline:'Un foglio per il frigorifero che dà ai soccorritori le risposte più importanti.',
   intro_p:'Quando arrivano i soccorsi mancano spesso proprio le risposte che contano: quali medicamenti? quali allergie? chi chiamare? Questo foglio risponde, anche se la persona non può più farlo da sola.',
   intro_1:'Compilare. Lasciare vuoto ciò che non si applica.', intro_2:'Stampare e appendere al frigorifero. I soccorritori guardano lì per primi. Una copia nel portafoglio.', intro_3:'Ristampare a ogni cambio di medicamenti. La data è in alto a destra.',
@@ -487,14 +493,16 @@ it:{
   toast_cleared:'Cancellato', toast_saved:'Salvato su questo dispositivo', toast_nosave:'Non viene più salvato'
 },
 en:{
+  description:'A sheet for the fridge: medication, allergies, diagnoses, contacts. For paramedics. Filled in and printed in the browser, nothing is sent.',
+  a_lang:'Language', a_preview:'Preview', a_remove:'Remove',
   tagline:'A sheet for the fridge that gives paramedics the answers that matter.',
-  intro_p:'When the ambulance arrives, the answers that count are often missing: which medication? which allergies? who to call? This sheet answers them, even when the person no longer can.',
+  intro_p:'When the ambulance arrives, the answers that count are often missing: Which medication? Which allergies? Who to call? This sheet answers them, even when the person no longer can.',
   intro_1:'Fill in. Leave blank what does not apply.', intro_2:'Print and put it on the fridge. Paramedics look there first. Keep a copy in your wallet.', intro_3:'Reprint whenever medication changes. The date is top right.',
   priv:'Everything stays on this device. The page sends nothing to a server. If you switch on “Remember on this device”, your browser keeps the draft locally; otherwise it is gone when you close the page.',
-  l_person:'Person', f_name:'First and last name', f_dob:'Date of birth', f_addr:'Street and number', f_city:'Postcode and town', f_floor:'Floor, door code, key', f_phone:'Phone', f_lang:'Language of the person', f_ins:'Health insurer, insured number', f_blood:'Blood group', f_weight:'Weight',
+  l_person:'Person', f_name:'First and last name', f_dob:'Date of birth', f_addr:'Street and number', f_city:'Postcode and town', f_floor:'Floor, door code, key', f_phone:'Phone', f_lang:'Language of the person', f_ins:'Health insurer, insurance number', f_blood:'Blood group', f_weight:'Weight',
   ph_floor:'3rd floor left, key with neighbour Mrs Roth (2nd floor)', ph_lang:'English, understands German',
-  l_flags:'Important for paramedics ', l_flags_h:'(tick what applies)', f_flags_more:'Other particulars', ph_flagsmore:'Hard of hearing right side, fall in May 2026',
-  flags:['Blood thinner','Pacemaker / ICD','Diabetes (insulin)','Diabetes (tablets)','Epilepsy','Dementia','Dialysis','Home oxygen','Heart valve / stent / bypass','Swallowing difficulty','Hearing aid','Dentures','Drug allergy','Pregnant'],
+  l_flags:'Important for paramedics ', l_flags_h:'(tick what applies)', f_flags_more:'Other things to know', ph_flagsmore:'Hard of hearing right side, fall in May 2026',
+  flags:['Blood thinner','Pacemaker / ICD','Diabetes (insulin)','Diabetes (tablets)','Epilepsy','Dementia','Dialysis','Home oxygen','Heart valve / stent / bypass','Swallowing difficulties','Hearing aid','Dentures','Drug allergy','Pregnant'],
   l_meds:'Medication', m_name:'Medication', m_dose:'Dose', m_when:'When', b_addmed:'+ Medication', when:['morning','noon','evening','night','as needed','weekly'],
   l_health:'Health', f_allerg:'Allergies and intolerances', ph_allerg:'Penicillin (rash), iodine contrast agent', f_diag:'Diagnoses and operations', ph_diag:'Heart failure, bypass surgery 2026 (Inselspital), type 2 diabetes',
   l_contacts:'Who to call', c_name:'Name', c_rel:'Relationship', c_tel:'Phone', ph_rel:'Daughter', f_doc:'Family doctor', ph_doc:'Dr Anna Berger, Länggasse practice', f_doctel:'Practice phone', f_pharm:'Pharmacy', f_spitex:'Home care (Spitex)',
@@ -512,12 +520,29 @@ en:{
 }
 };
 
-var EXAMPLE = {name:'Rosa Muster', dob:'14.03.1948', addr:'Länggassstrasse 42', city:'3012 Bern', floor:'3. Stock links · Schlüssel bei Nachbarin Frau Roth (2. Stock)', phone:'031 301 12 34', plang:'Deutsch, versteht Französisch', ins:'CSS · 756.1234.5678.90', blood:'A+', weight:'68 kg',
-  flags:[0,8,3,10], flagsmore:'Schwerhörig rechts, ohne Hörgerät laut sprechen',
-  meds:[['Xarelto','20 mg','0'],['Metformin','500 mg','0,2'],['Bisoprolol','5 mg','0'],['Dafalgan','1 g','4']],
+/* Example sheet: language-independent base plus per-language texts. */
+var EXAMPLE_BASE = {name:'Rosa Muster', dob:'14.03.1948', addr:'Länggassstrasse 42', city:'3012 Bern', phone:'031 301 12 34', ins:'CSS · 756.1234.5678.90', blood:'A+', weight:'68 kg',
+  flags:[0,8,3,10], meds:[['Xarelto','20 mg','0'],['Metformin','500 mg','0,2'],['Bisoprolol','5 mg','0'],['Dafalgan','1 g','4']],
+  doctel:'031 302 00 11', pv:true, va:true, od:false};
+function exampleFor(texts){ var o = {}; Object.keys(EXAMPLE_BASE).forEach(function(k){ o[k] = EXAMPLE_BASE[k]; }); Object.keys(texts).forEach(function(k){ o[k] = texts[k]; }); return o; }
+var EXAMPLE = {
+de: exampleFor({floor:'3. Stock links · Schlüssel bei Nachbarin Frau Roth (2. Stock)', plang:'Deutsch, versteht Französisch', flagsmore:'Schwerhörig rechts, ohne Hörgerät laut sprechen',
   allerg:'Penicillin (Ausschlag), Jod-Kontrastmittel', diag:'Herzinsuffizienz · Bypass-Operation Mai 2026, Inselspital · Diabetes Typ 2 · Hüft-TP rechts 2019',
   contacts:[['Lea Muster','Tochter','079 555 11 22'],['Hans Roth','Nachbar, hat Schlüssel','031 301 44 55']],
-  doc:'Dr. med. Anna Berger, Praxis Länggasse', doctel:'031 302 00 11', pharm:'Apotheke Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, Mo/Mi/Fr morgens', pv:true, va:true, od:false, docswhere:'Rote Mappe im Schrank neben der Haustür', notes:'Katze Mimi ist in der Wohnung, Nachbarin füttert. Bitte Brille und Hörgerät mitnehmen.'};
+  doc:'Dr. med. Anna Berger, Praxis Länggasse', pharm:'Apotheke Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, Mo/Mi/Fr morgens', docswhere:'Rote Mappe im Schrank neben der Haustür', notes:'Katze Mimi ist in der Wohnung, Nachbarin füttert. Bitte Brille und Hörgerät mitnehmen.'}),
+en: exampleFor({floor:'3rd floor left, key with neighbour Mrs Roth (2nd floor)', plang:'English, understands German', flagsmore:'Hard of hearing right side, speak loudly without hearing aid',
+  allerg:'Penicillin (rash), iodine contrast agent', diag:'Heart failure · bypass surgery May 2026, Inselspital · type 2 diabetes · right hip replacement 2019',
+  contacts:[['Lea Muster','Daughter','079 555 11 22'],['Hans Roth','Neighbour, has key','031 301 44 55']],
+  doc:'Dr. med. Anna Berger, Praxis Länggasse', pharm:'Apotheke Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, Mon/Wed/Fri mornings', docswhere:'Red folder in the cupboard by the front door', notes:'Cat Mimi is in the flat, the neighbour feeds her. Please bring glasses and hearing aid.'}),
+fr: exampleFor({floor:'3e étage à gauche · clé chez la voisine Mme Roth (2e)', plang:'Français, comprend l’allemand', flagsmore:'Malentendante à droite, parler fort sans appareil auditif',
+  allerg:'Pénicilline (éruption), produit de contraste iodé', diag:'Insuffisance cardiaque · bypass mai 2026, Inselspital · diabète de type 2 · prothèse de hanche droite 2019',
+  contacts:[['Lea Muster','Fille','079 555 11 22'],['Hans Roth','Voisin, a la clé','031 301 44 55']],
+  doc:'Dr Anna Berger, cabinet Länggasse', pharm:'Pharmacie Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, lu/me/ve le matin', docswhere:'Classeur rouge dans l’armoire près de la porte', notes:'La chatte Mimi est dans l’appartement, la voisine la nourrit. Prendre les lunettes et l’appareil auditif.'}),
+it: exampleFor({floor:'3º piano a sinistra · chiave dalla vicina sig.ra Roth (2º)', plang:'Italiano, capisce il tedesco', flagsmore:'Ipoacusia a destra, parlare a voce alta senza apparecchio acustico',
+  allerg:'Penicillina (eruzione), mezzo di contrasto iodato', diag:'Insufficienza cardiaca · bypass maggio 2026, Inselspital · diabete tipo 2 · protesi d’anca destra 2019',
+  contacts:[['Lea Muster','Figlia','079 555 11 22'],['Hans Roth','Vicino, ha la chiave','031 301 44 55']],
+  doc:'Dr. med. Anna Berger, studio Länggasse', pharm:'Farmacia Länggasse, 031 302 22 33', spitex:'Spitex Bern Nord, lu/me/ve mattina', docswhere:'Cartella rossa nell’armadio vicino alla porta', notes:'La gatta Mimi è in casa, la vicina la nutre. Portare gli occhiali e l’apparecchio acustico.'})
+};
 
 var $ = function(id){ return document.getElementById(id); };
 var lang = 'de';
@@ -567,7 +592,7 @@ function buildMeds(){
     var extra2 = document.createElement('option'); extra2.value='0,1,2'; extra2.textContent = t('when')[0] + ', ' + t('when')[1] + ', ' + t('when')[2]; sel.appendChild(extra2);
     sel.value = m[2]; if (sel.value !== m[2]) { sel.value = '0'; m[2] = '0'; }
     sel.addEventListener('change', function(){ m[2]=sel.value; changed(); }); l3.appendChild(sel);
-    var x = el('button','x','×'); x.type='button'; x.setAttribute('aria-label','entfernen'); x.addEventListener('click', function(){ state.meds.splice(i,1); if(!state.meds.length) state.meds.push(['','','0']); buildMeds(); changed(); });
+    var x = el('button','x','×'); x.type='button'; x.setAttribute('aria-label',t('a_remove')); x.addEventListener('click', function(){ state.meds.splice(i,1); if(!state.meds.length) state.meds.push(['','','0']); buildMeds(); changed(); });
     row.appendChild(l1); row.appendChild(l2); row.appendChild(l3); row.appendChild(x); box.appendChild(row);
   });
 }
@@ -600,7 +625,7 @@ function whenLabel(code){
 function fmtDate(d){ return ('0'+d.getDate()).slice(-2) + '.' + ('0'+(d.getMonth()+1)).slice(-2) + '.' + d.getFullYear(); }
 function renderSheet(){
   var s = state, ex = false;
-  if (isEmpty() || showExample) { s = EXAMPLE; ex = true; }
+  if (isEmpty() || showExample) { s = EXAMPLE[lang] || EXAMPLE.de; ex = true; }
   var sheet = $('sheet'); sheet.classList.toggle('example', ex); sheet.setAttribute('data-example', t('s_example'));
   $('s_title').textContent = t('s_title'); $('s_sub').textContent = t('s_sub');
   var d = $('s_date'); d.textContent=''; d.appendChild(document.createTextNode(t('s_date'))); d.appendChild(el('b', null, fmtDate(new Date())));
@@ -662,6 +687,9 @@ function renderUI(){
   document.querySelectorAll('[data-i18n]').forEach(function(n){ var v = t(n.getAttribute('data-i18n')); if (typeof v === 'string') n.textContent = v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(function(n){ var v = t(n.getAttribute('data-i18n-ph')); if (typeof v === 'string') n.placeholder = v; });
   document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+  document.querySelector('meta[name=description]').content = t('description');
+  document.querySelector('.langs').setAttribute('aria-label', t('a_lang'));
+  document.querySelector('.preview').setAttribute('aria-label', t('a_preview'));
   buildFlags(); buildMeds(); buildContacts(); renderSheet(); scaleSheet();
 }
 document.querySelectorAll('.langs button').forEach(function(b){ b.addEventListener('click', function(){ lang = b.getAttribute('data-lang'); try { localStorage.setItem('nb_lang', lang); } catch (e) {} renderUI(); }); });
